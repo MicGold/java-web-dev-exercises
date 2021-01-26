@@ -2,6 +2,7 @@ package org.launchcode.java.demos.lsn3classes1;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Course {
     private String name;
@@ -53,5 +54,28 @@ public class Course {
         System.out.println("Course Code and ID: " + this.courseCode + this.courseID);
         System.out.println("Taught by: " + teacher.getName());
         System.out.println("Enrolled Students: " + this.roster.keySet());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Course)) return false;
+        Course course = (Course) o;
+        return getCourseID() == course.getCourseID() && getName().equals(course.getName()) && getCourseCode().equals(course.getCourseCode());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getCourseCode(), getCourseID());
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "name='" + name + '\'' +
+                ", courseCode='" + courseCode + '\'' +
+                ", courseID=" + courseID +
+                ", teacher=" + teacher +
+                '}';
     }
 }
